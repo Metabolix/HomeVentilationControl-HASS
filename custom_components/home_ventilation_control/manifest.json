@@ -1,0 +1,10 @@
+{
+  "domain": "home_ventilation_control",
+  "name": "Home Ventilation Control",
+  "codeowners": ["@Metabolix"],
+  "config_flow": true,
+  "dependencies": ["network"],
+  "documentation": "https://github.com/Metabolix/HomeVentilationControl-HASS",
+  "iot_class": "local_push",
+  "version": "20230401.0"
+}
