@@ -6,5 +6,5 @@
   "dependencies": ["network"],
   "documentation": "https://github.com/Metabolix/HomeVentilationControl-HASS",
   "iot_class": "local_push",
-  "version": "20230401.0"
+  "version": "20230513.0"
 }
