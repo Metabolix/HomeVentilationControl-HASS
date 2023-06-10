@@ -59,7 +59,7 @@ async def async_discover_devices(hass: HomeAssistant, port: int = 0) -> dict[str
     broadcast_addresses = await network.async_get_ipv4_broadcast_addresses(hass)
     tasks = [HomeVentilationControlDevice.discover(discovery_address = (str(address), port or HomeVentilationControlDevice.DEFAULT_PORT), broadcast = True) for address in broadcast_addresses]
     discovered_devices: dict[str, HomeVentilationControlDevice] = {}
-    for coroutine in asyncio.as_completed(*tasks):
+    for coroutine in asyncio.as_completed(tasks):
         try:
             device_list = await coroutine
         except:
