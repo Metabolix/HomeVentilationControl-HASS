@@ -22,7 +22,7 @@ from homeassistant.const import (
     EVENT_HOMEASSISTANT_STARTED,
 )
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.exceptions import ConfigEntryNotReady, PlatformNotReady
+from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.debounce import Debouncer
 from homeassistant.helpers import discovery_flow
 from homeassistant.helpers.entity import DeviceInfo
@@ -87,10 +87,8 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     try:
         devices = await HomeVentilationControlDevice.discover(discovery_address = (entry.data[CONF_HOST], entry.data[CONF_PORT]), unique_id = entry.unique_id)
         device = list(devices.values())[0]
-    except HomeVentilationControlTimeoutException as ex:
-        raise ConfigEntryNotReady from ex
     except HomeVentilationControlException as ex:
-        raise PlatformNotReady from ex
+        raise ConfigEntryNotReady from ex
 
     async def _async_update() -> None:
         """Update the HomeVentilationControl device."""
